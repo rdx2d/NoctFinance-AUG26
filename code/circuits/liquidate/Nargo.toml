@@ -1,0 +1,8 @@
+[package]
+name = "liquidate"
+type = "bin"
+authors = [""]
+
+[dependencies]
+lib_common = { path = "../lib_common" }
+poseidon = { tag = "v0.1.1", git = "https://github.com/noir-lang/poseidon" }

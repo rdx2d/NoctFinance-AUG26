@@ -1,0 +1,94 @@
+# Secrets — NEVER commit. Per code_standard.md sec.7.
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+
+# Build outputs
+node_modules/
+**/node_modules/
+dist/
+build/
+out/
+cache/
+target/
+*.tsbuildinfo
+lcov.info
+
+# Foundry
+forge-cache/
+broadcast/
+
+# Noir / bb generated artifacts (live under <circuit>/target/, covered by target/)
+# but list explicitly in case a circuit emits next to its source:
+*.gz
+**/vk
+**/vk_hash
+**/kurier_vk_hash
+**/proof
+**/public_inputs
+
+# The compiled circuit JSON and kurier_vk_hash are exceptions to `target/` —
+# see code/.gitignore, which is the deeper file and therefore the one that
+# actually decides for anything under code/.
+
+# Dapp prebuild copies circuit JSON artifacts into public/circuits;
+# they are regenerated from code/circuits/<name>/target/<name>.json
+# by scripts/copy-circuit-artifacts.mjs on every dev/build.
+code/dapp/public/circuits/
+**/public_inputs.bad
+
+# External code mirrored locally for reference — each has its own upstream repo
+horizen-docs/
+zkVerify-docs/
+referenced_repos/
+
+# Python
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Claude Code local settings (machine-specific permissions, hooks, etc.)
+.claude/
+!.claude/settings.json
+.gstack/
+
+# Local Postgres install + its data directory. The bundled binaries and the
+# cluster's data files are machine-local and enormous (postgres.zip alone is
+# ~190MB, well past GitHub's 100MB per-file hard limit).
+postgres/
+postgres.zip
+
+# Plaintext key notes. `design-v2/pivot-privatekey-testnetwallet` holds the
+# DEPLOYER key (DEFAULT_ADMIN_ROLE over the whole protocol) with no file
+# extension, so extension-based secret scans miss it. Never committed — keep
+# it that way. Move it out of the repo and into a password manager.
+*privatekey*
+*private-key*
+*PRIVATE_KEY*
+design-v2/pivot-privatekey-testnetwallet
+
+# One-off debugging scratch scripts. Kept out of the repo because they hardcode
+# addresses that go stale the moment contracts are redeployed — a live one is
+# worse than none (see BUG-TRACKER.md #6).
+/mock-api.mjs
+code/dapp/find-error.mjs
+code/dapp/seed-oracle.mjs
+code/dapp/test-supply-flow.mjs

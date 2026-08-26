@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "outDir": "dist",
+    "rootDir": "."
+  },
+  // Emitting build: src only. test/ used to be in here, which broke
+  // `npm run build` outright — the gate tests import the SDK from
+  // ../../sdks/sdk-ts/src, outside rootDir, and tsc refuses. Nothing under
+  // test/ belongs in dist/ anyway. Tests are typechecked by tsconfig.test.json.
+  "include": ["src/**/*.ts"]
+}

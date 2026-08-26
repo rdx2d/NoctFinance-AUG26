@@ -1,0 +1,34 @@
+{
+  "name": "@lending/price-keeper",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Day-9 keeper: fetches signed Stork BTCUSD updates and pushes them to the on-chain Stork verifier so Oracle.getPrice(cbBTC) stays fresh.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0 <23"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "push-once": "tsx scripts/push-once.ts",
+    "start": "tsx scripts/start.ts",
+    "accrue": "tsx scripts/accrue.ts",
+    "horizen:push-once": "tsx scripts/keep-horizen-fresh.ts --once",
+    "horizen:keep": "tsx scripts/keep-horizen-fresh.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "pino": "^9.5.0",
+    "tsx": "^4.19.2",
+    "undici": "^6.21.0",
+    "viem": "^2.52.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5"
+  }
+}
